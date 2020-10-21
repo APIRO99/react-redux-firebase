@@ -46,7 +46,7 @@ export const SignInForm = () =>{
           </Label>
         </FormGroup>
 
-        <Button className="btn-warning btn-block">Submit</Button>
+        <Button className="btn-warning btn-block">Sign in</Button>
       </Form>
       </Col>
     </Container>
