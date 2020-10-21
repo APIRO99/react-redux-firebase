@@ -3,7 +3,7 @@ import { Container, Row} from 'reactstrap'
 
 export const ProjectDetails = ({ id }) => {
   return (
-      <Container className ="flex-grow-1">
+      <Container>
         <Row className="h1 my-4 mx-2">
           Title - { id }
         </Row>

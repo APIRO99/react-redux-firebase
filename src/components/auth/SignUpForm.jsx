@@ -32,7 +32,7 @@ export const SignUpForm = () =>{
   )
   
   return (
-    <Container className="flex-grow-1" fluid="md">
+    <Container fluid="md">
       <Col  xs="12" lg={{ size: 6, offset:3}}>
       <Form className =" my-5 mx-3" onSubmit={handleSubmint}>
 

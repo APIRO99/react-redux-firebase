@@ -1,7 +1,10 @@
 import React, { useState} from 'react'
+import {Link} from 'react-router-dom'
 import { SignedOutLinks } from './SignedOutLinks'
 import { SignedInLinks } from './SignedInLinks'
 import {  Collapse,     Navbar,   NavbarToggler, Container } from 'reactstrap';
+
+import textStyles from 'assets/styles/Text/NavLink.module.scss'
 
 const Header = () => {
 
@@ -9,7 +12,9 @@ const Header = () => {
   const toggleNavbar = () => setCollapsed(!collapsed);
   
   const Name = (
-    <h1 className="d-flex align-middle m-0">My Planner</h1>
+    <Link className={textStyles.Title} to='/'>
+      <h1 className="d-flex align-middle m-0">My Planner</h1>
+    </Link>
   )
 
   const Navigation = (
@@ -20,14 +25,14 @@ const Header = () => {
       isOpen={!collapsed} 
       navbar
       className="justify-content-end">
-      {(true) ? <SignedInLinks /> : <SignedOutLinks />}
+      {(false) ? <SignedInLinks /> : <SignedOutLinks />}
     </Collapse>
     </>
   )
 
   return(
     <Navbar 
-      className="bg-warning"
+      className="bg-yellow"
       color="faded" 
       light 
       expand="md">

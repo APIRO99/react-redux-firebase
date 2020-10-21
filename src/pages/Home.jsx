@@ -1,15 +1,15 @@
 import React from 'react'
-import { Layout } from 'components/layout'
 import { Dashboard } from 'components/dashboard'
+import { Container } from 'reactstrap'
 
 const Home = () => {
   return(
-    <Layout>
+    <Container className="bg-chanpage m-0" fluid={true}>
       {(true)
         ? <Dashboard className="flex-fill"/>
         : <h1>This is the landing page</h1>
       }
-    </Layout>
+    </Container>
   )
 }
 

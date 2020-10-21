@@ -1,13 +1,12 @@
 import React from 'react'
-import { Layout } from 'components/layout'
 import { SignInForm } from 'components/auth/SignInForm'
+import { Container } from 'reactstrap'
 
 const SignIn = () =>{
-
   return (
-    <Layout>
+    <Container className="flex-grow-1 bg-chanpage m-0" fluid={true}>
       <SignInForm />
-    </Layout>
+    </Container>
   )
 }
 

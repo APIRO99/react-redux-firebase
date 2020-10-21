@@ -1,13 +1,13 @@
 import React from 'react'
-import { Layout } from 'components/layout'
 import { SignUpForm } from 'components/auth/SignUpForm'
+import { Container } from 'reactstrap'
 
 const SignUp = () =>{
 
   return (
-    <Layout>
-      <SignUpForm />
-    </Layout>
+  <Container className="flex-grow-1 bg-chanpage m-0" fluid={true}>
+    <SignUpForm />
+  </Container>
   )
 }
 
