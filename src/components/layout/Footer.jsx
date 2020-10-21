@@ -5,8 +5,8 @@ const Footer = () => {
 
 
   return(
-    <Navbar className="fixed-bottom">
-      <h1>Hi from the footer</h1>
+    <Navbar className="bottom">
+      <h1 className="d-flex align-middle m-0">Hi from the footer</h1>
     </Navbar>
   )
 }
