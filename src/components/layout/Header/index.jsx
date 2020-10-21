@@ -3,10 +3,11 @@ import {Link} from 'react-router-dom'
 import { SignedOutLinks } from './SignedOutLinks'
 import { SignedInLinks } from './SignedInLinks'
 import {  Collapse,     Navbar,   NavbarToggler, Container } from 'reactstrap';
+import { connect } from 'react-redux'
 
 import textStyles from 'assets/styles/Text/NavLink.module.scss'
 
-const Header = () => {
+const Header = ({ user, userType }) => {
 
   const [collapsed, setCollapsed] = useState(true);
   const toggleNavbar = () => setCollapsed(!collapsed);
@@ -25,7 +26,7 @@ const Header = () => {
       isOpen={!collapsed} 
       navbar
       className="justify-content-end">
-      {(false) ? <SignedInLinks /> : <SignedOutLinks />}
+      {(userType !== 'default') ? <SignedInLinks /> : <SignedOutLinks />}
     </Collapse>
     </>
   )
@@ -44,4 +45,18 @@ const Header = () => {
   )
 }
 
-export default Header
+const mapStateToProps = (state) =>{
+  const { user } = state.auth
+  const { userType } = state.auth
+  return{
+    user,
+    userType
+  }
+}
+
+//const masDispatchToProps = (state) => {
+
+//}
+
+
+export default connect(mapStateToProps)(Header)

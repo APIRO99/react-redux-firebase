@@ -1,23 +1,26 @@
 import React, { useState } from 'react'
 import { Container, Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
 
-export const CreateProject = () =>{
+import { connect } from 'react-redux'
+import { createProject } from 'actions/project'
 
-  const [state, setState] = useState({
+const CreateProject = ({ createProject }) =>{
+
+  const [project, setProject] = useState({
     title:'',
     content: '',
   })
 
   const handleChange = (event) =>{
-    setState({
-      ...state,
+    setProject({
+      ...project,
       [event.target.id]: event.target.value
     })
   }
 
   const handleSubmint = (event) =>{
     event.preventDefault()
-    console.log(state);
+    createProject(project)
   }
   
   return (
@@ -45,3 +48,14 @@ export const CreateProject = () =>{
     </Container>
   )
 }
+
+
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createProject: (project) => dispatch(createProject(project))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(CreateProject)

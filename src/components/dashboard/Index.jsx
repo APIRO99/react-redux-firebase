@@ -3,14 +3,15 @@ import { Notifications } from './Notifications'
 import { ProjectList } from 'components/projects/ProjectList'
 import { Container, Row, Col } from 'reactstrap'
 
-export const Dashboard = () => {
-  
+import { connect } from 'react-redux'
 
+const Dashboard = (props) => {
+  const { projects } = props 
   return(
     <Container className="my-3">
       <Row>
         <Col xs="12" sm={{ size: 6, }}>
-          <ProjectList />
+          <ProjectList projects={projects}/>
         </Col>
         <Col xs="12" sm={{ size: 4, offset: 1 }}>
           <Notifications />
@@ -19,3 +20,12 @@ export const Dashboard = () => {
     </Container>
   )
 }
+
+const mapStateToProps = (state) =>{
+  const { projects } = state.project
+  return {
+    projects
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard)
