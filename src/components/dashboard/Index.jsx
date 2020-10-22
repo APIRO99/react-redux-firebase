@@ -24,7 +24,6 @@ const Dashboard = (props) => {
 }
 
 const mapStateToProps = (state) =>{
-  console.warn('Check why the dashboard its calling 4 times');
   const { projects } = state.firestore.ordered
   return {
     projects

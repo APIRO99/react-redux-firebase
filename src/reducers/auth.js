@@ -2,11 +2,23 @@ const initialState = {
   authError:null
 }
 
+const signup = (state) => {
+  return {
+    ...state,
+  authError:null
+  }
+}
+
+const singupErr = (state, { err }) => {
+  return {
+    ...state,
+  authError:err.message
+  }
+}
 
 const singin = (state) => {
   return {
     ...state,
-  Logged:true,
   authError:null
   }
 }
@@ -14,7 +26,6 @@ const singin = (state) => {
 const singinErr = (state) => {
   return {
     ...state,
-  Logged:false,
   authError:'Login failed'
   }
 }
@@ -22,7 +33,6 @@ const singinErr = (state) => {
 const signout = (state) => {
   return {
     ...state,
-  Logged:false,
   authError:null
   }
 }
@@ -30,13 +40,19 @@ const signout = (state) => {
 const signoutErr = (state) => {
   return {
     ...state,
-  Logged: state.Logged,
   authError:'Login failed'
   }
 }
 
 const authReducer = (state = initialState, action) =>{
   switch (action.type) {
+    
+    case 'SIGNUP_SUCCESS':
+      return signup(state)
+      
+    case 'SIGNUP_ERROR':
+      return singupErr(state, action)
+
     case 'SIGNIN_SUCCESS':
       return singin(state)
 

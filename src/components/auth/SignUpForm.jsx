@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import { Container, Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
 
-export const SignUpForm = () =>{
+import { SignUp } from 'actions/auth'
+import { connect } from 'react-redux'
+
+const SignUpForm = ({ signUp }) =>{
 
   const [state, setState] = useState({
     name:'',
+    userName:'',
     email: '',
     password:'',
     confirmPassword:''
@@ -19,7 +23,7 @@ export const SignUpForm = () =>{
 
   const handleSubmint = (event) =>{
     event.preventDefault()
-    console.log(state);
+    signUp(state)
   }
 
   const inputField = (label, id, placeholder) => (
@@ -37,6 +41,7 @@ export const SignUpForm = () =>{
       <Form className =" my-5 mx-3" onSubmit={handleSubmint}>
 
         { inputField('Name',              'name',             'name'              ) }
+        { inputField('Username',          'userName',         'Username'          ) }
         { inputField('Email',             'email',            'email@example.com' ) }
         { inputField('Password',          'password',         'password'          ) }
         { inputField('Confirm password',  'confirmPassword',  'Confirm password'  ) }
@@ -47,3 +52,12 @@ export const SignUpForm = () =>{
     </Container>
   )
 }
+
+
+const mapDispatchToPorps = (dispatch) => {
+  return{
+    signUp: (newUser) => dispatch(SignUp(newUser))
+  }
+}
+
+export default connect(null, mapDispatchToPorps)(SignUpForm)

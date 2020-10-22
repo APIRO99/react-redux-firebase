@@ -7,7 +7,6 @@ import { Spinner } from 'reactstrap'
 
 
 const ProjectDetails = ({ project }) => {
-  console.log(project);
 
   const story = ({ title, content, createdAt, authorUser}) => (
     <Container>
@@ -56,6 +55,7 @@ export default compose(
     collection: 'projects',
     doc: props.id,
     storeAs: "project"
-  }]),
+    }]
+  ),
   connect(mapStateToProps)
 )(ProjectDetails)

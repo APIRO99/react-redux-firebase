@@ -1,4 +1,6 @@
-## Project based in [the net ninja](https://www.youtube.com/channel/UCW5YeuERMmlnqo4oq8vwUpg) tutorial series [[React, Redux & Firebase App]](https://www.youtube.com/playlist?list=PL4cUxeGkcC9iWstfXntcj8f-dFZ4UtlN3)
+## Project based in [[React, Redux & Firebase App]](https://www.youtube.com/playlist?list=PL4cUxeGkcC9iWstfXntcj8f-dFZ4UtlN3) tutorial series by [The Net Ninja](https://www.youtube.com/channel/UCW5YeuERMmlnqo4oq8vwUpg)
+
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

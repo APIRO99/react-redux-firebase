@@ -5,7 +5,9 @@ import { Container } from 'reactstrap'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-const Project = ({ id, isLogged }) => {
+const Project = (props) => {
+  const { id } = props.match.params
+  const { isLogged } = props
   const projectDetails = (
     <Container className="flex-grow-1 bg-chanpage m-0" fluid={true}>
       <ProjectDetails id={id}/>
