@@ -2,15 +2,30 @@ import React from 'react'
 import Dashboard from 'components/dashboard'
 import { Container } from 'reactstrap'
 
-const Home = () => {
-  return(
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+
+const Home = ({ isLogged }) => {
+  
+  const dashboard = (
     <Container className="flex-grow-1 bg-chanpage m-0" fluid={true}>
-      {(true)
-        ? <Dashboard className="flex-fill"/>
-        : <h1>This is the landing page</h1>
-      }
+      <Dashboard className="flex-fill"/>
     </Container>
+  )
+
+  return (
+    <>{
+      (isLogged)
+        ? dashboard
+        :<Redirect to="/signin" />
+    }</>
   )
 }
 
-export default Home
+const mapStateToProps = (state) =>{
+  return{
+    isLogged: !state.firebase.auth.isEmpty
+  }
+}
+
+export default connect(mapStateToProps)(Home)

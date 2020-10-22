@@ -1,5 +1,4 @@
 const initialState = {
-  Logged:false,
   authError:null
 }
 
@@ -20,7 +19,21 @@ const singinErr = (state) => {
   }
 }
 
+const signout = (state) => {
+  return {
+    ...state,
+  Logged:false,
+  authError:null
+  }
+}
 
+const signoutErr = (state) => {
+  return {
+    ...state,
+  Logged: state.Logged,
+  authError:'Login failed'
+  }
+}
 
 const authReducer = (state = initialState, action) =>{
   switch (action.type) {
@@ -29,6 +42,12 @@ const authReducer = (state = initialState, action) =>{
 
     case 'SIGNIN_ERROR':
       return singinErr(state)
+
+    case 'SIGNOUT_SUCCESS':
+      return signout(state)
+
+    case 'SIGNOUT_ERROR':
+      return signoutErr(state)
 
     default:
       return state;

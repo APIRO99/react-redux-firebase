@@ -5,7 +5,7 @@ const Footer = () => {
 
 
   return(
-    <Navbar className="bottom">
+    <Navbar className="bottom bg-yellow">
       <h1 className="d-flex align-middle m-0">Hi from the footer</h1>
     </Navbar>
   )

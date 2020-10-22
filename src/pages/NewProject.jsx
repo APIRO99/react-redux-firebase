@@ -2,12 +2,30 @@ import React from 'react'
 import CreateProject from 'components/projects/CreateProject'
 import { Container } from 'reactstrap'
 
-const NewProject = () => {
-  return (
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+
+const NewProject = ({ isLogged }) => {
+
+  const newProject = (
     <Container className="flex-grow-1 bg-chanpage m-0" fluid={true}>
       <CreateProject />
     </Container>
   )
+
+  return (
+    <>{
+      (isLogged)
+        ? newProject
+        :<Redirect to="/signin" />
+    }</>
+  )
 }
 
-export default NewProject
+const mapStateToProps = (state) =>{
+  return{
+    isLogged: !state.firebase.auth.isEmpty
+  }
+}
+
+export default connect(mapStateToProps)(NewProject)

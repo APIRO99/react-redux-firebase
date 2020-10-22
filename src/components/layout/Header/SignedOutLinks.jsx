@@ -4,7 +4,7 @@ import { Nav, NavItem } from 'reactstrap';
 
 import styles from 'assets/styles/Text/NavLink.module.scss'
 
-export const SignedOutLinks = () => {
+const SignedOutLinks = () => {
   const signIn = "/signIn"
   const signUp = "/signUp"
 
@@ -23,3 +23,5 @@ export const SignedOutLinks = () => {
       </Nav>
   )
 }
+
+export default SignedOutLinks

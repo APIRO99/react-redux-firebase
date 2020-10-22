@@ -1,13 +1,13 @@
 import React, { useState} from 'react'
 import {Link} from 'react-router-dom'
-import { SignedOutLinks } from './SignedOutLinks'
-import { SignedInLinks } from './SignedInLinks'
+import SignedOutLinks from './SignedOutLinks'
+import SignedInLinks from './SignedInLinks'
 import {  Collapse,     Navbar,   NavbarToggler, Container } from 'reactstrap';
 import { connect } from 'react-redux'
 
 import textStyles from 'assets/styles/Text/NavLink.module.scss'
 
-const Header = ({ Logged }) => {
+const Header = ({ isLogged }) => {
 
   const [collapsed, setCollapsed] = useState(true);
   const toggleNavbar = () => setCollapsed(!collapsed);
@@ -26,7 +26,7 @@ const Header = ({ Logged }) => {
       isOpen={!collapsed} 
       navbar
       className="justify-content-end">
-      {(Logged) ? <SignedInLinks /> : <SignedOutLinks />}
+      {(isLogged) ? <SignedInLinks /> : <SignedOutLinks />}
     </Collapse>
     </>
   )
@@ -46,9 +46,8 @@ const Header = ({ Logged }) => {
 }
 
 const mapStateToProps = (state) =>{
-  const { Logged } = state.auth
   return{
-    Logged
+    isLogged: !state.firebase.auth.isEmpty
   }
 }
 

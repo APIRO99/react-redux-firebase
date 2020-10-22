@@ -2,13 +2,30 @@ import React from 'react'
 import { SignUpForm } from 'components/auth/SignUpForm'
 import { Container } from 'reactstrap'
 
-const SignUp = () =>{
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+
+const SignUp = ({ isLogged }) =>{
+
+  const signUpForm = (
+    <Container className="flex-grow-1 bg-chanpage m-0" fluid={true}>
+      <SignUpForm />
+    </Container>
+  )
 
   return (
-  <Container className="flex-grow-1 bg-chanpage m-0" fluid={true}>
-    <SignUpForm />
-  </Container>
+    <>{
+      (!isLogged)
+        ? signUpForm
+        :<Redirect to="/" />
+    }</>
   )
 }
 
-export default SignUp
+const mapStateToProps = (state) =>{
+  return{
+    isLogged: !state.firebase.auth.isEmpty
+  }
+}
+
+export default connect(mapStateToProps)(SignUp)
