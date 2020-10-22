@@ -1,5 +1,5 @@
 import React from 'react'
-import { SignInForm } from 'components/auth/SignInForm'
+import SignInForm from 'components/auth/SignInForm'
 import { Container } from 'reactstrap'
 
 const SignIn = () =>{

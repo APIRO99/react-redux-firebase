@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { Container, Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
 
-export const SignInForm = () =>{
+import { SignIn } from 'actions/auth'
+import { connect } from 'react-redux'
+
+const SignInForm = ({signIn, authEroor}) =>{
 
   const [state, setState] = useState({
     email: '',
@@ -18,7 +21,7 @@ export const SignInForm = () =>{
 
   const handleSubmint = (event) =>{
     event.preventDefault()
-    console.log(state);
+    signIn(state)
   }
 
   const inputField = (label, id, placeholder) => (
@@ -49,6 +52,23 @@ export const SignInForm = () =>{
         <Button className="btn-warning btn-block">Sign in</Button>
       </Form>
       </Col>
+      {(authEroor)? <p>{authEroor}</p> : <></>}
     </Container>
   )
 }
+
+const mapStateToProps = (state) => {
+  return{
+    authEroor: state.auth.authError
+  }
+}
+
+
+
+const mapDispatchToPorps = (dispatch) => {
+  return{
+    signIn: (cred) => dispatch(SignIn(cred))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToPorps)(SignInForm)

@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 
 import textStyles from 'assets/styles/Text/NavLink.module.scss'
 
-const Header = ({ user, userType }) => {
+const Header = ({ Logged }) => {
 
   const [collapsed, setCollapsed] = useState(true);
   const toggleNavbar = () => setCollapsed(!collapsed);
@@ -26,7 +26,7 @@ const Header = ({ user, userType }) => {
       isOpen={!collapsed} 
       navbar
       className="justify-content-end">
-      {(userType !== 'default') ? <SignedInLinks /> : <SignedOutLinks />}
+      {(Logged) ? <SignedInLinks /> : <SignedOutLinks />}
     </Collapse>
     </>
   )
@@ -46,17 +46,10 @@ const Header = ({ user, userType }) => {
 }
 
 const mapStateToProps = (state) =>{
-  const { user } = state.auth
-  const { userType } = state.auth
+  const { Logged } = state.auth
   return{
-    user,
-    userType
+    Logged
   }
 }
-
-//const masDispatchToProps = (state) => {
-
-//}
-
 
 export default connect(mapStateToProps)(Header)
