@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProjectDetails} from 'components/projects/ProjectDetails'
+import ProjectDetails from 'components/projects/ProjectDetails'
 import { Container } from 'reactstrap'
 
 const Project = (props) => {

@@ -5,8 +5,6 @@ import { Notifications } from './Notifications'
 import { ProjectList } from 'components/projects/ProjectList'
 import { Container, Row, Col } from 'reactstrap'
 import { firestoreConnect } from 'react-redux-firebase'
-
-
 import { connect } from 'react-redux'
 
 const Dashboard = (props) => {
@@ -34,8 +32,8 @@ const mapStateToProps = (state) =>{
 }
 
 export default compose(
-  connect(mapStateToProps),
-  firestoreConnect(['projects'])
+  firestoreConnect(['projects']),
+  connect(mapStateToProps)
 )(Dashboard)
 
 

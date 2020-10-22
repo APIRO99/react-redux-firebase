@@ -27,14 +27,12 @@ export const ProjectList = ( { projects } ) => {
   )
 
   return(
-    <>
-    {
+    <>{
       (Loading)
-      ? (Loading) 
+      ? (projects.length) 
         ? projects.map(project => Card(project))
         : <h3>There are not any remaining project</h3>
       : LoadingSpinners
-    }
-    </>
+    }</>
   )
 }
