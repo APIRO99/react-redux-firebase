@@ -1,7 +1,11 @@
 import React from 'react'
+import { compose } from 'redux'
+
 import { Notifications } from './Notifications'
 import { ProjectList } from 'components/projects/ProjectList'
 import { Container, Row, Col } from 'reactstrap'
+import { firestoreConnect } from 'react-redux-firebase'
+
 
 import { connect } from 'react-redux'
 
@@ -22,10 +26,16 @@ const Dashboard = (props) => {
 }
 
 const mapStateToProps = (state) =>{
-  const { projects } = state.project
+  console.warn('Check why the dashboard its calling 4 times');
+  const { projects } = state.firestore.ordered
   return {
     projects
   }
 }
 
-export default connect(mapStateToProps)(Dashboard)
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect(['projects'])
+)(Dashboard)
+
+

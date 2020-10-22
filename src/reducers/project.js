@@ -1,18 +1,16 @@
 const initialState = {
-  projects:[
-    {id: '1', title:'Learn react', content:'Learn react with the net ninja'},
-    {id: '2', title:'Learn redux', content:'Learn redux with the net ninja'},
-    {id: '3', title:'Learn firebase', content:'Learn firebase with the net ninja'}
-  ]
+  projects:[]
 }
 
 
-const createProject = (state, action) =>{
-  console.log('create project cicle complete!!! Congrats pro', action.project);
+const createProject = (state, { project }) =>{
   return state
 }
 
-
+const handleError = (state, { err }) => {
+  console.log(err);
+  return state
+}
 
 
 
@@ -21,6 +19,9 @@ const projectReducer = (state = initialState, action) =>{
   switch (action.type) {
     case 'CREATE_PROJECT':
       return createProject(state, action)
+
+    case 'CREATE_PROJECT_ERROR':
+      return handleError(state, action)
   
     default:
       return state
