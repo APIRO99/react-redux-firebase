@@ -4,11 +4,11 @@ import { Container, Button, Form, FormGroup, Label, Input, Col } from 'reactstra
 import { connect } from 'react-redux'
 import { createProject } from 'actions/project'
 
-const CreateProject = ({ createProject }) =>{
+const CreateProject = ({ history, createProject, author }) =>{
 
   const [project, setProject] = useState({
     title:'',
-    content: '',
+    content: ''
   })
 
   const handleChange = (event) =>{
@@ -20,7 +20,9 @@ const CreateProject = ({ createProject }) =>{
 
   const handleSubmint = (event) =>{
     event.preventDefault()
-    createProject(project)
+    console.log(history);
+    createProject({ ...project, authorUser: author })
+    history.goBack()
   }
   
   return (
@@ -49,7 +51,12 @@ const CreateProject = ({ createProject }) =>{
   )
 }
 
-
+const mapStateToProps = (state) => {
+  const author = state.firebase.profile.userName
+  return {
+    author
+  }
+}
 
 
 const mapDispatchToProps = (dispatch) => {
@@ -58,4 +65,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(CreateProject)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateProject)

@@ -5,11 +5,11 @@ import { Container } from 'reactstrap'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-const NewProject = ({ isLogged }) => {
+const NewProject = ({ history, isLogged }) => {
 
   const newProject = (
     <Container className="flex-grow-1 bg-chanpage m-0" fluid={true}>
-      <CreateProject />
+      <CreateProject history={history}/>
     </Container>
   )
 

@@ -1,10 +1,9 @@
 export const createProject = (project) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
+
     const firestore = getFirestore();
-    
     firestore.collection('projects').add({
       ...project,
-      authorUser: 'APIRO99',
       createdAt: new Date()
 
     }).then( () => {
@@ -14,5 +13,6 @@ export const createProject = (project) => {
       dispatch({ type: 'CREATE_PROJECT_ERROR', err })
 
     })
+
   }
 } 

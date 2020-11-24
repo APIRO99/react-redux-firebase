@@ -9,10 +9,12 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import rootReducer from 'reducers/root'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import { reduxFirestore, getFirestore, createFirestoreInstance } from'redux-firestore'
+import { reduxFirestore, getFirestore } from'redux-firestore'
 import { ReactReduxFirebaseProvider,  getFirebase } from 'react-redux-firebase'
-import firebaseConnection from 'services/firebase'
-import firebase from "firebase/app"
+import fbConfig from 'config/firebase'
+import rrfProps from 'config/react-redux-firebase'
+import { useSelector  } from 'react-redux'
+import { isLoaded  } from 'react-redux-firebase';
 
 
 //Styles
@@ -24,21 +26,23 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 const store = createStore(rootReducer,
   compose(
     applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
-    reduxFirestore(firebaseConnection)
+    reduxFirestore(fbConfig)
   ))
 
-const rrfProps = {
-  firebase,
-  config: firebaseConnection,
-  dispatch: store.dispatch,
-  createFirestoreInstance
+const AuthIsLoaded = ({ children }) => {
+  const auth = useSelector(state => state.firebase.auth)
+  return (isLoaded(auth))
+    ? children
+    : <div>Loading Screen...</div>
 }
 
 
 ReactDOM.render(
   <Provider store={store}>
-    <ReactReduxFirebaseProvider {...rrfProps}>
-      <App />
+    <ReactReduxFirebaseProvider {...rrfProps(store)}>
+      <AuthIsLoaded>
+        <App />
+      </AuthIsLoaded>
     </ReactReduxFirebaseProvider>
   </Provider>,
   document.getElementById("App")

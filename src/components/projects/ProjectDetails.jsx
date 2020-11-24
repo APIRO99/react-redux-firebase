@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { Container, Row} from 'reactstrap'
 import { Spinner } from 'reactstrap'
+import moment from 'moment'
 
 
 const ProjectDetails = ({ project }) => {
@@ -19,7 +20,7 @@ const ProjectDetails = ({ project }) => {
       <hr/>
       <Container className="mx-2 mb-3">
         <Row>{authorUser}</Row>
-        <Row>20 de febrero de 2020</Row>
+        <Row>{ moment(createdAt.toDate()).calendar() } </Row>
       </Container>
     </Container>
   )
